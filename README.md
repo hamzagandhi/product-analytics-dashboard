@@ -208,6 +208,9 @@ This confirms:
   /prisma
 ```
 
+Scaling:
+If this dashboard needed to handle one million write events per minute, I would avoid writing directly to the database for every request. Instead, I would introduce a message queue to collect events and process them asynchronously in the background. This would protect the database from being overwhelmed. I would also use batching when writing events to the database and add caching (e.g., Redis) for frequently requested analytics. Finally, I would make the backend stateless and horizontally scalable so multiple API instances could handle traffic behind a load balancer.
+
 ---
 
 ## 👤 Author
